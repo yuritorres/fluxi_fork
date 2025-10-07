@@ -73,8 +73,11 @@ UPLOAD_DIR=./uploads
 
 #### 3. Execute com Docker
 ```bash
+# Criar diretórios necessários
+mkdir -p uploads sessoes rags
+
 # Método 1: Usando docker-compose
-docker-compose up -d
+docker-compose up -d --build
 
 # Método 2: Usando o script helper
 chmod +x docker-run.sh
@@ -161,37 +164,43 @@ Abra seu navegador em `http://localhost:8001`
 
 ### Comandos Básicos
 ```bash
+# Criar diretórios necessários (primeira vez)
+mkdir -p uploads sessoes rags
+
 # Iniciar Fluxi
-./docker-run.sh start
+docker-compose up -d --build
 
 # Parar Fluxi
-./docker-run.sh stop
+docker-compose down
 
 # Reiniciar Fluxi
-./docker-run.sh restart
+docker-compose restart
 
 # Ver logs
-./docker-run.sh logs
+docker-compose logs -f
+
+# Verificar status
+docker-compose ps
 
 # Abrir shell no container
-./docker-run.sh shell
+docker-compose exec fluxi bash
 ```
 
 ### Comandos Avançados
 ```bash
 # Configurar porta personalizada
-./docker-run.sh start -p 8080
-
-# Configurar caminho do banco
-./docker-run.sh start -d /custom/path/fluxi.db
-
-# Configurar todos os caminhos
-./docker-run.sh start -p 8080 -d /data/fluxi.db -u /data/uploads -s /data/sessoes -r /data/rags
+PORT=8080 docker-compose up -d
 
 # Rebuild da imagem
-./docker-run.sh build
+docker-compose build --no-cache
 
 # Limpeza completa
+docker-compose down -v
+docker system prune -f
+
+# Usando script helper (alternativa)
+./docker-run.sh start -p 8080
+./docker-run.sh build
 ./docker-run.sh clean
 ```
 
@@ -603,6 +612,7 @@ templates/
 - ✅ Autenticação de sessões WhatsApp
 - ⚠️ **Importante**: Use HTTPS em produção
 - ⚠️ **Importante**: Não compartilhe `fluxi.db` publicamente
+- ⚠️ **Docker**: Certifique-se de que os diretórios `uploads`, `sessoes` e `rags` existam antes de executar
 
 ---
 
@@ -666,6 +676,7 @@ Encontrou um bug? Abra uma [issue](https://github.com/jjhoow/fluxi/issues) com:
 - Comportamento esperado vs atual
 - Screenshots (se aplicável)
 - Versão do Python e SO
+- Logs do Docker (se usando Docker): `docker-compose logs`
 
 ---
 
