@@ -24,14 +24,13 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application code
 COPY . .
 
-# Create uploads directory
-RUN mkdir -p uploads/rags
+# Create necessary directories with proper permissions
+RUN mkdir -p uploads/rags sessoes rags && \
+    chmod -R 755 uploads sessoes rags
 
-# Create sessoes directory
-RUN mkdir -p sessoes
-
-# Create rags directory
-RUN mkdir -p rags
+# Create database directory and set permissions
+RUN mkdir -p /app/data && \
+    chmod 755 /app/data
 
 # Expose port (default 8000, can be overridden)
 EXPOSE 8000
@@ -39,6 +38,7 @@ EXPOSE 8000
 # Set environment variables
 ENV PYTHONPATH=/app
 ENV PYTHONUNBUFFERED=1
+ENV DATABASE_URL=sqlite:///./data/fluxi.db
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \

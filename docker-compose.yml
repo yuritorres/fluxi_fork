@@ -4,7 +4,7 @@ services:
     ports:
       - "${PORT:-8001}:8001"
     volumes:
-      - "./fluxi.db:/app/fluxi.db"
+      - "./data:/app/data"
       - "./uploads:/app/uploads"
       - "./sessoes:/app/sessoes"
       - "./rags:/app/rags"
@@ -12,7 +12,7 @@ services:
       - HOST=${HOST:-0.0.0.0}
       - PORT=${PORT:-8001}
       - DEBUG=${DEBUG:-True}
-      - DATABASE_URL=${DATABASE_URL:-sqlite:///./fluxi.db}
+      - DATABASE_URL=${DATABASE_URL:-sqlite:///./data/fluxi.db}
       - UPLOAD_DIR=${UPLOAD_DIR:-./uploads}
     restart: unless-stopped
     healthcheck:
