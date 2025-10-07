@@ -6,8 +6,8 @@ services:
     ports:
       - "${PORT:-8001}:8001"
     volumes:
-      - "${DATABASE_URL:-./fluxi.db}:/app/fluxi.db"
-      - "${UPLOAD_DIR:-./uploads}:/app/uploads"
+      - "./fluxi.db:/app/fluxi.db"
+      - "./uploads:/app/uploads"
       - "./sessoes:/app/sessoes"
       - "./rags:/app/rags"
     environment:
