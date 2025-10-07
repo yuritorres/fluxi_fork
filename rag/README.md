@@ -46,7 +46,7 @@ O módulo `rag` implementa Retrieval-Augmented Generation usando ChromaDB e Open
 ### Custom Service (rag_custom_service.py)
 
 **RAGCustomService:**
-- Implementação própria sem Embedchain
+- Implementação própria com ChromaDB e OpenAI embeddings
 - ChromaDB + OpenAI embeddings
 - Chunking inteligente
 - Busca por similaridade

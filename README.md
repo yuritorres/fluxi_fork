@@ -116,7 +116,7 @@ Abra seu navegador em `http://localhost:8001`
 3. Teste a conexão
 
 #### Opção B: Provedor Local
-1. Acesse `http://localhost:8001/llm-providers`
+1. Acesse `http://localhost:8001/provedores-llm`
 2. Clique em "Novo Provedor"
 3. Configure:
    - **Tipo**: LM Studio, llama.cpp ou Ollama
@@ -411,9 +411,8 @@ Gerenciamento de conexões WhatsApp usando Neonize com suporte a QR Code e múlt
 
 ### LLM & IA
 - **OpenRouter** - Gateway para múltiplos LLMs
-- **LangChain** - Orquestração de LLMs
 - **ChromaDB** - Banco vetorial para RAG
-- **Embedchain** - Framework RAG
+- **Implementação própria** - Sistema RAG customizado
 
 ### WhatsApp
 - **Neonize** - Biblioteca Python para WhatsApp Web
@@ -421,7 +420,6 @@ Gerenciamento de conexões WhatsApp usando Neonize com suporte a QR Code e múlt
 ### Frontend
 - **Jinja2** - Templates HTML com herança
 - **Bootstrap 5** - Framework CSS responsivo
-- **HTMX** - Interatividade sem JavaScript complexo
 - **Templates modulares** - Componentes reutilizáveis
 - **Interface responsiva** - Mobile-first design
 
@@ -590,7 +588,7 @@ templates/
 | **Agentes** | `/agentes/sessao/{id}` | Agentes da sessão |
 | **Ferramentas** | `/ferramentas` | Lista de ferramentas |
 | **Wizard** | `/ferramentas/wizard/step1` | Criar ferramenta |
-| **RAG** | `/rag` | Bases de conhecimento |
+| **RAG** | `/rags` | Bases de conhecimento |
 | **MCP** | `/mcp/presets` | Presets MCP |
 | **Métricas** | `/metricas` | Analytics |
 | **Config** | `/configuracoes` | Settings |

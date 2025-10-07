@@ -24,8 +24,13 @@ pydantic-settings==2.1.0
 pillow>=10.0.0
 
 # RAG e Embeddings
-embedchain==0.1.98
 chromadb==0.4.22
+openai>=1.0.0
+numpy>=1.24.0
+
+# QR Code
+segno>=1.5.0
+qrcode[pil]>=7.4.0
 
 # MCP (Model Context Protocol)
 mcp>=1.0.0

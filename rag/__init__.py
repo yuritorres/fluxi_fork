@@ -1,5 +1,5 @@
 """
-Módulo RAG (Retrieval-Augmented Generation) com Embedchain.
+Módulo RAG (Retrieval-Augmented Generation) com implementação própria.
 """
 from rag.rag_model import RAG
 from rag.rag_metrica_model import RAGMetrica
