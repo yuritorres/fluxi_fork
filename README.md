@@ -7,7 +7,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-00C7B7?style=flat&logo=fastapi)](https://fastapi.tiangolo.com/)
 [![Python](https://img.shields.io/badge/Python-3.9+-blue?style=flat&logo=python)](https://www.python.org/)
 [![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0+-red?style=flat)](https://www.sqlalchemy.org/)
-[![License](https://img.shields.io/badge/License-MIT-green?style=flat)](LICENSE)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue?style=flat)](LICENSE)
 
 </div>
 
@@ -715,7 +715,18 @@ Cada módulo possui documentação detalhada com:
 
 ## 📄 Licença
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Este projeto está sob a licença Apache 2.0. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+### Dependências de Terceiros
+
+Este projeto utiliza as seguintes bibliotecas de terceiros:
+
+- **[whatsmeow](https://github.com/tulir/whatsmeow)** - Biblioteca Go para WhatsApp Web multidevice API (usada via neonize)
+- **[neonize](https://github.com/krypton-byte/neonize)** - Cliente Python para WhatsApp Web
+- **[FastAPI](https://fastapi.tiangolo.com/)** - Framework web moderno
+- **[SQLAlchemy](https://www.sqlalchemy.org/)** - ORM para banco de dados
+- **[ChromaDB](https://www.trychroma.com/)** - Banco vetorial para RAG
+- **[OpenAI](https://openai.com/)** - Para embeddings e LLMs
 
 ---
 
@@ -730,7 +741,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 - [FastAPI](https://fastapi.tiangolo.com/) - Framework web
 - [Neonize](https://github.com/krypton-byte/neonize) - WhatsApp client
-- [LangChain](https://www.langchain.com/) - Orquestração LLM
+- [whatsmeow](https://github.com/tulir/whatsmeow) - WhatsApp Web multidevice API
 - [ChromaDB](https://www.trychroma.com/) - Banco vetorial
 - [OpenRouter](https://openrouter.ai/) - Gateway LLM
 

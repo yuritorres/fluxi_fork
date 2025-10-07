@@ -10,6 +10,7 @@ alembic==1.13.1
 
 # WhatsApp
 neonize==0.2.0
+# Note: neonize uses whatsmeow (https://github.com/tulir/whatsmeow) under the hood
 
 # HTTP Client
 httpx==0.26.0
