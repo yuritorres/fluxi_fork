@@ -44,8 +44,8 @@
 
 #### 1. Clone o repositório
 ```bash
-git clone https://github.com/seu-usuario/fluxi-opencode.git
-cd fluxi-opencode
+git clone https://github.com/jjhoow/fluxi.git
+cd fluxi
 ```
 
 #### 2. Configure o ambiente
@@ -89,8 +89,8 @@ Abra seu navegador em `http://localhost:8001`
 
 #### 1. Clone o repositório
 ```bash
-git clone https://github.com/seu-usuario/fluxi-opencode.git
-cd fluxi-opencode
+git clone https://github.com/jjhoow/fluxi.git
+cd fluxi
 ```
 
 #### 2. Instale as dependências
@@ -226,7 +226,7 @@ UPLOAD_DIR=./uploads
 ## 📂 Arquitetura do Projeto
 
 ```
-fluxi-opencode/
+fluxi/
 ├── agente/                    # Módulo de agentes inteligentes
 ├── config/                    # Configurações do sistema
 ├── ferramenta/                # Ferramentas executáveis
@@ -662,7 +662,7 @@ Contribuições são bem-vindas! Para contribuir:
 
 ## 🐛 Reportar Bugs
 
-Encontrou um bug? Abra uma [issue](https://github.com/seu-usuario/fluxi-opencode/issues) com:
+Encontrou um bug? Abra uma [issue](https://github.com/jjhoow/fluxi/issues) com:
 - Descrição do problema
 - Passos para reproduzir
 - Comportamento esperado vs atual
@@ -723,8 +723,8 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ## 💬 Comunidade
 
-- 🐛 **Issues**: [GitHub Issues](https://github.com/seu-usuario/fluxi-opencode/issues)
-- 💡 **Discussões**: [GitHub Discussions](https://github.com/seu-usuario/fluxi-opencode/discussions)
+- 🐛 **Issues**: [GitHub Issues](https://github.com/jjhoow/fluxi/issues)
+- 💡 **Discussões**: [GitHub Discussions](https://github.com/jjhoow/fluxi/discussions)
 
 ---
 
