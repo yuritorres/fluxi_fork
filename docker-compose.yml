@@ -12,7 +12,7 @@ services:
       - HOST=${HOST:-0.0.0.0}
       - PORT=${PORT:-8001}
       - DEBUG=${DEBUG:-True}
-      - DATABASE_URL=${DATABASE_URL:-sqlite:///./data/fluxi.db}
+      - DATABASE_URL=${DATABASE_URL:-sqlite:////app/data/fluxi.db}
       - UPLOAD_DIR=${UPLOAD_DIR:-./uploads}
     restart: unless-stopped
     healthcheck:

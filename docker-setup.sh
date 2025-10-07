@@ -16,12 +16,13 @@ fi
 # Criar diretórios necessários
 mkdir -p uploads sessoes rags
 
-# Definir permissões corretas
-chmod -R 755 data uploads sessoes rags
+# Definir permissões corretas (777 para garantir acesso total)
+chmod -R 777 data uploads sessoes rags
 
 echo "✅ Ambiente configurado com sucesso!"
 echo "📝 Para iniciar o Docker:"
-echo "   docker-compose up -d"
+echo "   docker-compose down"
+echo "   docker-compose up -d --build"
 echo ""
 echo "📝 Para ver logs:"
 echo "   docker-compose logs -f"
