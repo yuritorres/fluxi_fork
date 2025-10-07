@@ -192,7 +192,7 @@ whatsapp_*/
 
 # MCP data
 mcp_data/
-mcp_*/
+# mcp_*/  # Comentado para permitir mcp_client
 
 # Log files
 *.log

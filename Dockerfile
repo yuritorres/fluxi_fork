@@ -10,6 +10,9 @@ RUN apt-get update && apt-get install -y \
     g++ \
     libffi-dev \
     libssl-dev \
+    libmagic1 \
+    libmagic-dev \
+    file \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first for better caching
