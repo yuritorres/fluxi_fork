@@ -1,4 +1,4 @@
-# 🚀 Fluxi - Assistente WhatsApp Inteligente
+# Fluxi - Assistente WhatsApp Inteligente
 
 <div align="center">
 
@@ -13,32 +13,32 @@
 
 ---
 
-## 📖 Sobre o Projeto
+## Sobre o Projeto
 
 **Fluxi** é uma plataforma opensource para criar e gerenciar assistentes inteligentes no WhatsApp. Com ele, você pode:
 
-✅ Criar múltiplos agentes com personalidades únicas  
-✅ Configurar ferramentas customizadas (APIs, funções, integrações)  
-✅ Treinar bases de conhecimento (RAG) com seus documentos  
-✅ Integrar múltiplos provedores LLM (OpenRouter, OpenAI, Anthropic, etc.)  
-✅ Conectar ferramentas externas via MCP (Model Context Protocol)  
-✅ Gerenciar múltiplas sessões WhatsApp  
-✅ Monitorar métricas e performance  
+Criar múltiplos agentes com personalidades únicas 
+Configurar ferramentas customizadas (APIs, funções, integrações) 
+Treinar bases de conhecimento (RAG) com seus documentos 
+Integrar múltiplos provedores LLM (OpenRouter, OpenAI, Anthropic, etc.) 
+Conectar ferramentas externas via MCP (Model Context Protocol) 
+Gerenciar múltiplas sessões WhatsApp 
+Monitorar métricas e performance 
 
 ---
 
-## 🎯 Casos de Uso
+## Casos de Uso
 
-- 🏢 **Atendimento ao Cliente** - Automatize suporte 24/7
-- 💼 **Vendas** - Qualifique leads e agende reuniões
-- 📚 **Suporte Técnico** - Responda dúvidas com base de conhecimento
-- 🎓 **Educação** - Assistentes educacionais personalizados
-- 🏥 **Agendamentos** - Marque consultas e envie lembretes
-- 📊 **Consultas de Dados** - Busque informações em sistemas internos
+- **Atendimento ao Cliente** - Automatize suporte 24/7
+- **Vendas** - Qualifique leads e agende reuniões
+- **Suporte Técnico** - Responda dúvidas com base de conhecimento
+- **Educação** - Assistentes educacionais personalizados
+- **Agendamentos** - Marque consultas e envie lembretes
+- **Consultas de Dados** - Busque informações em sistemas internos
 
 ---
 
-## ⚡ Quick Start
+## Quick Start
 
 ### Opção 1: Docker (Recomendado)
 
@@ -81,8 +81,8 @@ docker-compose up -d --build
 
 # Método 2: Usando o script helper
 chmod +x docker-run.sh
-./docker-run.sh setup    # Configuração inicial
-./docker-run.sh start    # Inicia o Fluxi
+./docker-run.sh setup # Configuração inicial
+./docker-run.sh start # Inicia o Fluxi
 ```
 
 #### 4. Acesse a interface
@@ -109,7 +109,7 @@ python main.py
 #### 4. Acesse a interface
 Abra seu navegador em `http://localhost:8001`
 
-## ⚙️ Configuração Inicial
+## Configuração Inicial
 
 ### 1. Configurar Provedor LLM
 
@@ -122,9 +122,9 @@ Abra seu navegador em `http://localhost:8001`
 1. Acesse `http://localhost:8001/provedores-llm`
 2. Clique em "Novo Provedor"
 3. Configure:
-   - **Tipo**: LM Studio, llama.cpp ou Ollama
-   - **URL**: `http://localhost:11434` (Ollama) ou `http://localhost:1234` (LM Studio)
-   - **Modelo**: Seu modelo preferido
+- **Tipo**: LM Studio, llama.cpp ou Ollama
+- **URL**: `http://localhost:11434` (Ollama) ou `http://localhost:1234` (LM Studio)
+- **Modelo**: Seu modelo preferido
 4. Teste a conexão
 
 ### 2. Criar Sessão WhatsApp
@@ -132,8 +132,8 @@ Abra seu navegador em `http://localhost:8001`
 1. Acesse `http://localhost:8001/sessoes`
 2. Clique em "Nova Sessão"
 3. Preencha:
-   - **Nome**: Nome da sessão
-   - **Descrição**: Descrição opcional
+- **Nome**: Nome da sessão
+- **Descrição**: Descrição opcional
 4. Clique em "Criar"
 5. Clique em "Conectar" na sessão criada
 6. Escaneie o QR Code com seu WhatsApp
@@ -143,14 +143,14 @@ Abra seu navegador em `http://localhost:8001`
 1. Acesse `http://localhost:8001/agentes/sessao/{id-da-sessao}`
 2. Clique em "Novo Agente"
 3. Preencha os campos:
-   - **Nome**: Nome do agente
-   - **Papel**: Ex: "Assistente de Vendas"
-   - **Objetivo**: Ex: "Ajudar clientes com produtos"
-   - **Políticas**: Ex: "Sempre ser educado e profissional"
-   - **Tarefa**: Ex: "Responder dúvidas sobre produtos"
-   - **Objetivo Explícito**: Ex: "Aumentar vendas"
-   - **Público-alvo**: Ex: "Clientes interessados em produtos"
-   - **Restrições**: Ex: "Não fazer promessas que não posso cumprir"
+- **Nome**: Nome do agente
+- **Papel**: Ex: "Assistente de Vendas"
+- **Objetivo**: Ex: "Ajudar clientes com produtos"
+- **Políticas**: Ex: "Sempre ser educado e profissional"
+- **Tarefa**: Ex: "Responder dúvidas sobre produtos"
+- **Objetivo Explícito**: Ex: "Aumentar vendas"
+- **Público-alvo**: Ex: "Clientes interessados em produtos"
+- **Restrições**: Ex: "Não fazer promessas que não posso cumprir"
 4. Selecione o provedor LLM configurado
 5. Clique em "Criar"
 
@@ -160,7 +160,7 @@ Abra seu navegador em `http://localhost:8001`
 2. O agente deve responder automaticamente
 3. Verifique as métricas em `http://localhost:8001/metricas`
 
-## 🐳 Comandos Docker
+## Comandos Docker
 
 ### Comandos Básicos
 ```bash
@@ -219,46 +219,46 @@ DEBUG=True
 UPLOAD_DIR=./uploads
 
 ```
-   - Escaneie o QR Code com WhatsApp
+- Escaneie o QR Code com WhatsApp
 
 3. **Crie um Agente**
-   - Dentro da sessão, crie um agente
-   - Configure seu system prompt (papel, objetivo, políticas)
-   - Adicione ferramentas (opcional)
+- Dentro da sessão, crie um agente
+- Configure seu system prompt (papel, objetivo, políticas)
+- Adicione ferramentas (opcional)
 
 4. **Envie uma mensagem!**
-   - Envie mensagem no WhatsApp vinculado
-   - O agente responderá automaticamente
+- Envie mensagem no WhatsApp vinculado
+- O agente responderá automaticamente
 
 ---
 
-## 📂 Arquitetura do Projeto
+## Arquitetura do Projeto
 
 ```
 fluxi/
-├── agente/                    # Módulo de agentes inteligentes
-├── config/                    # Configurações do sistema
-├── ferramenta/                # Ferramentas executáveis
-├── llm_providers/             # Integrações com provedores LLM
-├── mcp_client/                # Model Context Protocol
-├── mensagem/                  # Mensagens WhatsApp
-├── metrica/                   # Métricas e monitoramento
-├── rag/                       # Sistema RAG (bases de conhecimento)
-├── sessao/                    # Sessões WhatsApp
-├── templates/                 # Templates HTML (Jinja2)
-├── uploads/                   # Arquivos enviados
-├── rags/                      # Bases de conhecimento ChromaDB
-├── database.py                # Configuração SQLAlchemy
-├── main.py                    # Aplicação FastAPI
-├── requirements.txt           # Dependências Python
-└── README.md                  # Este arquivo
+agente/ # Módulo de agentes inteligentes
+config/ # Configurações do sistema
+ferramenta/ # Ferramentas executáveis
+llm_providers/ # Integrações com provedores LLM
+mcp_client/ # Model Context Protocol
+mensagem/ # Mensagens WhatsApp
+metrica/ # Métricas e monitoramento
+rag/ # Sistema RAG (bases de conhecimento)
+sessao/ # Sessões WhatsApp
+templates/ # Templates HTML (Jinja2)
+uploads/ # Arquivos enviados
+rags/ # Bases de conhecimento ChromaDB
+database.py # Configuração SQLAlchemy
+main.py # Aplicação FastAPI
+requirements.txt # Dependências Python
+README.md # Este arquivo
 ```
 
 ---
 
-## 📚 Documentação dos Módulos
+## Documentação dos Módulos
 
-### 🤖 [Agente](agente/README.md)
+### [Agente](agente/README.md)
 Gerenciamento de agentes inteligentes com system prompts personalizados, ferramentas e bases de conhecimento.
 
 **Principais funcionalidades:**
@@ -270,11 +270,11 @@ Gerenciamento de agentes inteligentes com system prompts personalizados, ferrame
 - Loop agentic para execução de múltiplas ferramentas
 - Configurações LLM específicas por agente
 
-**[📖 Ver documentação completa →](agente/README.md)**
+**[ Ver documentação completa →](agente/README.md)**
 
 ---
 
-### ⚙️ [Config](config/README.md)
+### [Config](config/README.md)
 Centro de configurações do sistema com gerenciamento de chaves de API, parâmetros LLM e preferências globais.
 
 **Principais funcionalidades:**
@@ -287,11 +287,11 @@ Centro de configurações do sistema com gerenciamento de chaves de API, parâme
 - Interface web para edição
 - Conversão automática de tipos
 
-**[📖 Ver documentação completa →](config/README.md)**
+**[ Ver documentação completa →](config/README.md)**
 
 ---
 
-### 🔧 [Ferramenta](ferramenta/README.md)
+### [Ferramenta](ferramenta/README.md)
 Sistema de function calling com wizard visual para criar ferramentas customizadas que integram APIs e executam código.
 
 **Principais funcionalidades:**
@@ -305,11 +305,11 @@ Sistema de function calling com wizard visual para criar ferramentas customizada
 - Variáveis por ferramenta (API keys, secrets)
 - Ferramentas padrão (data/hora, calculadora)
 
-**[📖 Ver documentação completa →](ferramenta/README.md)**
+**[ Ver documentação completa →](ferramenta/README.md)**
 
 ---
 
-### 🧠 [LLM Providers](llm_providers/README.md)
+### [LLM Providers](llm_providers/README.md)
 Gerenciamento de provedores LLM locais e externos com suporte a múltiplos modelos e fallback automático.
 
 **Principais funcionalidades:**
@@ -322,11 +322,11 @@ Gerenciamento de provedores LLM locais e externos com suporte a múltiplos model
 - Interface web para gerenciamento
 - Configuração de provedores personalizados
 
-**[📖 Ver documentação completa →](llm_providers/README.md)**
+**[ Ver documentação completa →](llm_providers/README.md)**
 
 ---
 
-### 🔌 [MCP Client](mcp_client/README.md)
+### [MCP Client](mcp_client/README.md)
 Implementação completa do Model Context Protocol para conectar ferramentas externas (GitHub, filesystem, databases).
 
 **Principais funcionalidades:**
@@ -338,11 +338,11 @@ Implementação completa do Model Context Protocol para conectar ferramentas ext
 - Gerenciamento de conexões e reconexão automática
 - Compatível com Claude Desktop config
 
-**[📖 Ver documentação completa →](mcp_client/README.md)**
+**[ Ver documentação completa →](mcp_client/README.md)**
 
 ---
 
-### 💬 [Mensagem](mensagem/README.md)
+### [Mensagem](mensagem/README.md)
 Armazenamento e gerenciamento de mensagens WhatsApp com histórico, contexto e métricas de processamento.
 
 **Principais funcionalidades:**
@@ -353,11 +353,11 @@ Armazenamento e gerenciamento de mensagens WhatsApp com histórico, contexto e m
 - Registro de respostas do agente
 - Status de processamento e resposta
 
-**[📖 Ver documentação completa →](mensagem/README.md)**
+**[ Ver documentação completa →](mensagem/README.md)**
 
 ---
 
-### 📊 [Métrica](metrica/README.md)
+### [Métrica](metrica/README.md)
 Sistema de analytics e monitoramento com estatísticas de uso, performance e consumo.
 
 **Principais funcionalidades:**
@@ -370,11 +370,11 @@ Sistema de analytics e monitoramento com estatísticas de uso, performance e con
 - Clientes únicos atendidos
 - Gráficos e visualizações
 
-**[📖 Ver documentação completa →](metrica/README.md)**
+**[ Ver documentação completa →](metrica/README.md)**
 
 ---
 
-### 📚 [RAG](rag/README.md)
+### [RAG](rag/README.md)
 Sistema RAG (Retrieval-Augmented Generation) com ChromaDB e embeddings para bases de conhecimento.
 
 **Principais funcionalidades:**
@@ -387,11 +387,11 @@ Sistema RAG (Retrieval-Augmented Generation) com ChromaDB e embeddings para base
 - Métricas de uso e performance
 - Gerenciamento de chunks
 
-**[📖 Ver documentação completa →](rag/README.md)**
+**[ Ver documentação completa →](rag/README.md)**
 
 ---
 
-### 📱 [Sessão](sessao/README.md)
+### [Sessão](sessao/README.md)
 Gerenciamento de conexões WhatsApp usando Neonize com suporte a QR Code e múltiplos agentes.
 
 **Principais funcionalidades:**
@@ -404,13 +404,13 @@ Gerenciamento de conexões WhatsApp usando Neonize com suporte a QR Code e múlt
 - Reconexão automática
 - Histórico de conversas
 
-**[📖 Ver documentação completa →](sessao/README.md)**
+**[ Ver documentação completa →](sessao/README.md)**
 
 ---
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 ### Backend
 - **FastAPI** - Framework web moderno e rápido
@@ -438,21 +438,21 @@ Gerenciamento de conexões WhatsApp usando Neonize com suporte a QR Code e múlt
 
 ---
 
-## 🔄 Fluxo de Funcionamento
+## Fluxo de Funcionamento
 
 ```mermaid
 graph LR
-    A[Usuário WhatsApp] -->|Mensagem| B[Sessão]
-    B --> C[Agente Ativo]
-    C --> D{Tem RAG?}
-    D -->|Sim| E[Busca Contexto]
-    E --> F[LLM Provider]
-    D -->|Não| F
-    F --> G{Usar Ferramenta?}
-    G -->|Sim| H[Executa Ferramenta]
-    H --> F
-    G -->|Não| I[Resposta Final]
-    I --> A
+A[Usuário WhatsApp] -->|Mensagem| B[Sessão]
+B --> C[Agente Ativo]
+C --> D{Tem RAG?}
+D -->|Sim| E[Busca Contexto]
+E --> F[LLM Provider]
+D -->|Não| F
+F --> G{Usar Ferramenta?}
+G -->|Sim| H[Executa Ferramenta]
+H --> F
+G -->|Não| I[Resposta Final]
+I --> A
 ```
 
 1. **Mensagem recebida** via WhatsApp
@@ -465,7 +465,7 @@ graph LR
 
 ---
 
-## 🎨 Recursos Principais
+## Recursos Principais
 
 ### 1. Interface Web Moderna
 - **Dashboard responsivo** com métricas em tempo real
@@ -526,7 +526,7 @@ Acompanhe performance:
 - Ferramentas mais usadas
 - Custo estimado
 
-## 🎨 Interface Web
+## Interface Web
 
 ### Templates e Componentes
 
@@ -534,59 +534,59 @@ O Fluxi usa **Jinja2** com herança de templates para uma interface moderna e re
 
 ```
 templates/
-├── base.html                    # Template base com Bootstrap 5
-├── index.html                   # Dashboard principal
-├── agente/                      # Módulo de agentes
-│   ├── lista.html              # Lista de agentes
-│   ├── form.html               # Formulário de agente
-│   ├── ferramentas.html        # Gerenciar ferramentas
-│   └── detalhes.html           # Detalhes do agente
-├── ferramenta/                  # Módulo de ferramentas
-│   ├── lista.html              # Lista de ferramentas
-│   ├── form.html               # Formulário de ferramenta
-│   └── wizard/                 # Wizard de criação
-│       ├── step1.html          # Definição básica
-│       ├── step2.html           # Parâmetros
-│       ├── step3.html           # Configuração
-│       ├── step4.html           # Mapeamento
-│       ├── step5.html           # Output
-│       ├── step6.html           # Encadeamento
-│       └── step7.html           # Variáveis
-├── sessao/                      # Módulo de sessões
-│   ├── lista.html              # Lista de sessões
-│   ├── form.html               # Nova sessão
-│   ├── conectar.html            # QR Code
-│   └── detalhes.html            # Detalhes da sessão
-├── rag/                         # Módulo RAG
-│   ├── lista.html              # Lista de RAGs
-│   ├── form.html               # Novo RAG
-│   ├── treinar.html            # Upload de documentos
-│   ├── chunks.html             # Gerenciar chunks
-│   └── buscar.html             # Testar busca
-├── mcp/                         # Módulo MCP
-│   ├── presets.html            # Presets disponíveis
-│   ├── clients.html            # Clientes MCP
-│   └── tools.html               # Tools disponíveis
-├── metrica/                     # Módulo de métricas
-│   ├── geral.html              # Dashboard geral
-│   ├── sessao.html             # Métricas por sessão
-│   └── periodo.html             # Estatísticas por período
-└── shared/                      # Componentes compartilhados
-    └── erro.html                # Página de erro
+base.html # Template base com Bootstrap 5
+index.html # Dashboard principal
+agente/ # Módulo de agentes
+lista.html # Lista de agentes
+form.html # Formulário de agente
+ferramentas.html # Gerenciar ferramentas
+detalhes.html # Detalhes do agente
+ferramenta/ # Módulo de ferramentas
+lista.html # Lista de ferramentas
+form.html # Formulário de ferramenta
+wizard/ # Wizard de criação
+step1.html # Definição básica
+step2.html # Parâmetros
+step3.html # Configuração
+step4.html # Mapeamento
+step5.html # Output
+step6.html # Encadeamento
+step7.html # Variáveis
+sessao/ # Módulo de sessões
+lista.html # Lista de sessões
+form.html # Nova sessão
+conectar.html # QR Code
+detalhes.html # Detalhes da sessão
+rag/ # Módulo RAG
+lista.html # Lista de RAGs
+form.html # Novo RAG
+treinar.html # Upload de documentos
+chunks.html # Gerenciar chunks
+buscar.html # Testar busca
+mcp/ # Módulo MCP
+presets.html # Presets disponíveis
+clients.html # Clientes MCP
+tools.html # Tools disponíveis
+metrica/ # Módulo de métricas
+geral.html # Dashboard geral
+sessao.html # Métricas por sessão
+periodo.html # Estatísticas por período
+shared/ # Componentes compartilhados
+erro.html # Página de erro
 ```
 
 ### Características da Interface
 
-- **🎨 Design Moderno**: Bootstrap 5 com tema personalizado
-- **📱 Responsivo**: Mobile-first design
-- **⚡ Interativo**: HTMX para atualizações sem reload
-- **🧩 Modular**: Componentes reutilizáveis
-- **📊 Dashboard**: Métricas em tempo real
-- **🔧 Wizard Visual**: Criação de ferramentas em 7 etapas
-- **📱 QR Code**: Conexão WhatsApp integrada
-- **📈 Gráficos**: Visualizações de métricas
-- **🔍 Busca**: Filtros e pesquisa em listas
-- **⚙️ Configurações**: Interface amigável para settings
+- ** Design Moderno**: Bootstrap 5 com tema personalizado
+- ** Responsivo**: Mobile-first design
+- ** Interativo**: HTMX para atualizações sem reload
+- ** Modular**: Componentes reutilizáveis
+- ** Dashboard**: Métricas em tempo real
+- ** Wizard Visual**: Criação de ferramentas em 7 etapas
+- ** QR Code**: Conexão WhatsApp integrada
+- ** Gráficos**: Visualizações de métricas
+- ** Busca**: Filtros e pesquisa em listas
+- ** Configurações**: Interface amigável para settings
 
 ### Páginas Principais
 
@@ -604,19 +604,19 @@ templates/
 
 ---
 
-## 🔐 Segurança
+## Segurança
 
-- ✅ Variáveis de ambiente para credenciais sensíveis
-- ✅ Sanitização de inputs
-- ✅ Rate limiting (em desenvolvimento)
-- ✅ Autenticação de sessões WhatsApp
-- ⚠️ **Importante**: Use HTTPS em produção
-- ⚠️ **Importante**: Não compartilhe `fluxi.db` publicamente
-- ⚠️ **Docker**: Certifique-se de que os diretórios `uploads`, `sessoes` e `rags` existam antes de executar
+- Variáveis de ambiente para credenciais sensíveis
+- Sanitização de inputs
+- Rate limiting (em desenvolvimento)
+- Autenticação de sessões WhatsApp
+- **Importante**: Use HTTPS em produção
+- **Importante**: Não compartilhe `fluxi.db` publicamente
+- **Docker**: Certifique-se de que os diretórios `uploads`, `sessoes` e `rags` existam antes de executar
 
 ---
 
-## 📊 Configurações
+## Configurações
 
 ### Variáveis de Ambiente
 
@@ -649,7 +649,7 @@ Acesse `/config` para configurar:
 
 ---
 
-## 🤝 Contribuindo
+## Contribuindo
 
 Contribuições são bem-vindas! Para contribuir:
 
@@ -668,7 +668,7 @@ Contribuições são bem-vindas! Para contribuir:
 
 ---
 
-## 🐛 Reportar Bugs
+## Reportar Bugs
 
 Encontrou um bug? Abra uma [issue](https://github.com/jjhoow/fluxi/issues) com:
 - Descrição do problema
@@ -680,7 +680,7 @@ Encontrou um bug? Abra uma [issue](https://github.com/jjhoow/fluxi/issues) com:
 
 ---
 
-## 📝 Roadmap
+## Roadmap
 
 - [ ] Autenticação de usuários
 - [ ] Suporte a múltiplos idiomas
@@ -694,27 +694,27 @@ Encontrou um bug? Abra uma [issue](https://github.com/jjhoow/fluxi/issues) com:
 
 ---
 
-## 🎓 Aprendizado e Documentação
+## Aprendizado e Documentação
 
 Este projeto foi completamente documentado com READMEs individuais para cada módulo:
 
-- ✅ **[Agente](agente/README.md)** - Sistema de agentes inteligentes com system prompts
-- ✅ **[Config](config/README.md)** - Centro de configurações do sistema
-- ✅ **[Ferramenta](ferramenta/README.md)** - Function calling e wizard de ferramentas
-- ✅ **[LLM Providers](llm_providers/README.md)** - Gerenciamento de provedores LLM
-- ✅ **[MCP Client](mcp_client/README.md)** - Model Context Protocol para ferramentas externas
-- ✅ **[Mensagem](mensagem/README.md)** - Gerenciamento de mensagens WhatsApp
-- ✅ **[Métrica](metrica/README.md)** - Analytics e monitoramento
+- **[Agente](agente/README.md)** - Sistema de agentes inteligentes com system prompts
+- **[Config](config/README.md)** - Centro de configurações do sistema
+- **[Ferramenta](ferramenta/README.md)** - Function calling e wizard de ferramentas
+- **[LLM Providers](llm_providers/README.md)** - Gerenciamento de provedores LLM
+- **[MCP Client](mcp_client/README.md)** - Model Context Protocol para ferramentas externas
+- **[Mensagem](mensagem/README.md)** - Gerenciamento de mensagens WhatsApp
+- **[Métrica](metrica/README.md)** - Analytics e monitoramento
 
 ### Guias de Configuração
-- 🔧 [Configuração OpenRouter](config/README.md#configuração-openrouter)
-- 🔧 [Configuração Provedores Locais](llm_providers/README.md#configuração)
-- 🔧 [Criação de Agentes](agente/README.md#exemplos-de-uso)
-- 🔧 [Sistema de Ferramentas](ferramenta/README.md#exemplos-de-uso)
-- 🔧 [Configuração RAG](rag/README.md#exemplos-de-uso)
-- 🔧 [Integração MCP](mcp_client/README.md#exemplos-de-uso)
-- ✅ **[RAG](rag/README.md)** - Bases de conhecimento com embeddings
-- ✅ **[Sessão](sessao/README.md)** - Conexões WhatsApp
+- [Configuração OpenRouter](config/README.md#configuração-openrouter)
+- [Configuração Provedores Locais](llm_providers/README.md#configuração)
+- [Criação de Agentes](agente/README.md#exemplos-de-uso)
+- [Sistema de Ferramentas](ferramenta/README.md#exemplos-de-uso)
+- [Configuração RAG](rag/README.md#exemplos-de-uso)
+- [Integração MCP](mcp_client/README.md#exemplos-de-uso)
+- **[RAG](rag/README.md)** - Bases de conhecimento com embeddings
+- **[Sessão](sessao/README.md)** - Conexões WhatsApp
 
 Cada módulo possui documentação detalhada com:
 - Arquitetura e componentes
@@ -724,7 +724,7 @@ Cada módulo possui documentação detalhada com:
 - Integrações
 - Notas técnicas
 
-## 📄 Licença
+## Licença
 
 Este projeto está sob a licença Apache 2.0. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
@@ -741,14 +741,14 @@ Este projeto utiliza as seguintes bibliotecas de terceiros:
 
 ---
 
-## 💬 Comunidade
+## Comunidade
 
-- 🐛 **Issues**: [GitHub Issues](https://github.com/jjhoow/fluxi/issues)
-- 💡 **Discussões**: [GitHub Discussions](https://github.com/jjhoow/fluxi/discussions)
+- **Issues**: [GitHub Issues](https://github.com/jjhoow/fluxi/issues)
+- **Discussões**: [GitHub Discussions](https://github.com/jjhoow/fluxi/discussions)
 
 ---
 
-## 🙏 Agradecimentos
+## Agradecimentos
 
 - [FastAPI](https://fastapi.tiangolo.com/) - Framework web
 - [Neonize](https://github.com/krypton-byte/neonize) - WhatsApp client
@@ -760,9 +760,8 @@ Este projeto utiliza as seguintes bibliotecas de terceiros:
 
 <div align="center">
 
-**Desenvolvido com ❤️ para a comunidade opensource**
+**Desenvolvido com para a comunidade opensource**
 
-⭐ **Se este projeto foi útil, considere dar uma estrela!** ⭐
+**Se este projeto foi útil, considere dar uma estrela!** 
 
 </div>
-

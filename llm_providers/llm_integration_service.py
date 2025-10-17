@@ -74,10 +74,15 @@ class LLMIntegrationService:
             return resultado
             
         except Exception as e:
-            # 4. Fallback para OpenRouter se configurado
-            if provedor_info["tipo"] != "openrouter" and ConfiguracaoService.obter_valor(
+            # 4. Fallback para OpenRouter se configurado E disponível
+            fallback_habilitado = ConfiguracaoService.obter_valor(
                 db, "llm_fallback_openrouter", True
-            ):
+            )
+            openrouter_disponivel = LLMIntegrationService._openrouter_disponivel(db)
+            
+            if (provedor_info["tipo"] != "openrouter" and 
+                fallback_habilitado and 
+                openrouter_disponivel):
                 print(f"⚠️ Erro com provedor {provedor_info['tipo']}, tentando OpenRouter: {e}")
                 try:
                     resultado = await LLMIntegrationService._usar_openrouter(
@@ -130,9 +135,22 @@ class LLMIntegrationService:
                         "motivo": "configuracao_local"
                     }
         
-        # 4. Fallback para OpenRouter
-        return {"tipo": "openrouter", "motivo": "fallback_padrao"}
+        # 4. Fallback para OpenRouter (apenas se disponível)
+        if LLMIntegrationService._openrouter_disponivel(db):
+            return {"tipo": "openrouter", "motivo": "fallback_padrao"}
+        
+        # 5. Se não há provedor disponível, retornar erro
+        raise ValueError(
+            "Nenhum provedor LLM configurado. "
+            "Configure um provedor local ou adicione sua chave de API do OpenRouter nas configurações."
+        )
 
+    @staticmethod
+    def _openrouter_disponivel(db: Session) -> bool:
+        """Verifica se o OpenRouter está disponível (tem chave configurada)."""
+        api_key = ConfiguracaoService.obter_valor(db, "openrouter_api_key")
+        return api_key is not None and api_key.strip() != ""
+    
     @staticmethod
     async def _usar_provedor_local(
         db: Session,
