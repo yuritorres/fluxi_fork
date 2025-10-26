@@ -14,19 +14,10 @@ services:
       - DEBUG=${DEBUG:-True}
       - DATABASE_URL=${DATABASE_URL:-sqlite:////app/data/fluxi.db}
       - UPLOAD_DIR=${UPLOAD_DIR:-./uploads}
-      - REDIS_HOST=redis
     restart: unless-stopped
-    depends_on:
-      - redis
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
-
-  redis:
-    image: "redis:alpine"
-    volumes:
-      - "./redis_data:/data"
-    restart: unless-stopped
