@@ -36,3 +36,4 @@ qrcode[pil]>=7.4.0
 
 # MCP (Model Context Protocol)
 mcp==1.15.0
+mem0ai

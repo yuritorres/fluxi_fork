@@ -14,6 +14,7 @@ from agente.agente_schema import AgenteCriar, AgenteAtualizar
 from ferramenta.ferramenta_model import Ferramenta
 from ferramenta.ferramenta_service import FerramentaService
 from llm_providers.llm_integration_service import LLMIntegrationService
+from agente.memory_service import MemoryService
 
 
 class AgenteService:
@@ -315,8 +316,23 @@ class AgenteService:
             db, "openrouter_top_p", "1.0"
         ))
         
-        # Construir system prompt
+        # Inicializar MemoryService
+        memory_service = MemoryService(db)
+
+        # Buscar memórias existentes
+        user_id = f"sessao_{sessao.id}"
+        memorias_existentes = memory_service.search_memory(
+            query=mensagem.conteudo_texto or "...",
+            user_id=user_id
+        )
+
+        # Construir system prompt com memória
         system_prompt = AgenteService.construir_system_prompt(agente)
+        if memorias_existentes:
+            contexto_memoria = "\n\nLembre-se dos seguintes fatos sobre o usuário:\n"
+            for mem in memorias_existentes:
+                contexto_memoria += f"- {mem['memory']}\n"
+            system_prompt += contexto_memoria
         
         # Construir histórico
         historico = AgenteService.construir_historico_mensagens(
@@ -611,6 +627,16 @@ class AgenteService:
                     print(f"✅ [AGENTE] Resposta final recebida: {len(texto_resposta_final)} caracteres")
                     break
             
+            # Adicionar interação à memória
+            if texto_resposta_final:
+                memory_service.add_memory(
+                    messages=[
+                        {"role": "user", "content": mensagem.conteudo_texto or "..."},
+                        {"role": "assistant", "content": texto_resposta_final}
+                    ],
+                    user_id=user_id
+                )
+
             # Calcular tempo total
             tempo_ms = int((time.time() - inicio) * 1000)
             
