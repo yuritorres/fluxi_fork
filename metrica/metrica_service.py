@@ -7,7 +7,6 @@ from typing import Dict, Any, List, Optional
 from datetime import datetime, timedelta
 from mensagem.mensagem_model import Mensagem
 from sessao.sessao_model import Sessao
-from cache import get_from_cache, set_cache
 
 
 class MetricaService:
@@ -16,11 +15,6 @@ class MetricaService:
     @staticmethod
     def obter_metricas_gerais(db: Session) -> Dict[str, Any]:
         """Obtém métricas gerais do sistema."""
-        cache_key = "metricas_gerais"
-        cached_metricas = get_from_cache(cache_key)
-        if cached_metricas:
-            return cached_metricas
-
         # Total de sessões
         total_sessoes = db.query(Sessao).count()
         sessoes_ativas = db.query(Sessao).filter(Sessao.ativa == True).count()
@@ -41,7 +35,7 @@ class MetricaService:
         # Clientes únicos
         clientes_unicos = db.query(Mensagem.telefone_cliente).distinct().count()
         
-        metricas = {
+        return {
             "sessoes": {
                 "total": total_sessoes,
                 "ativas": sessoes_ativas,
@@ -59,8 +53,6 @@ class MetricaService:
                 "clientes_unicos": clientes_unicos
             }
         }
-        set_cache(cache_key, metricas, ttl=60)  # Cache por 60 segundos
-        return metricas
 
     @staticmethod
     def obter_metricas_sessao(db: Session, sessao_id: int) -> Dict[str, Any]:
