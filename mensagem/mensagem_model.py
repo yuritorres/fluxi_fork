@@ -35,7 +35,6 @@ class Mensagem(Base):
     
     # Metadados da conversa
     contexto = Column(JSON, nullable=True)  # Histórico de mensagens para contexto
-    intencao = Column(String(50), nullable=True, index=True) # Intenção do usuário
     
     # Resposta do agente
     resposta_texto = Column(Text, nullable=True)
