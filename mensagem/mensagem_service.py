@@ -109,7 +109,6 @@ class MensagemService:
         """
         from sessao.sessao_service import SessaoService
         from agente.agente_service import AgenteService
-        from agente.intencao_service import IntencaoService
         
         # Obter informações da mensagem
         message = event.Message
@@ -359,36 +358,6 @@ Digite *#ajuda* para ver comandos disponíveis."""
         db.commit()
         db.refresh(db_mensagem)
         
-        # --- Reconhecimento de Intenção ---
-        if sessao.auto_responder and db_mensagem.conteudo_texto:
-            intencao = await IntencaoService.reconhecer_intencao(db, db_mensagem.conteudo_texto)
-            db_mensagem.intencao = intencao
-            db.commit()
-            print(f"👁️ Intenção reconhecida: {intencao}")
-
-            # Se a intenção for falar com atendente, não processar com o agente
-            if intencao == "falar_com_atendente":
-                print("🗣️ Intenção 'falar_com_atendente'. Transferindo...")
-
-                # Enviar mensagem de transferência
-                from sessao.sessao_service import gerenciador_sessoes
-                cliente = gerenciador_sessoes.obter_cliente(sessao_id)
-                if cliente:
-                    from neonize.utils import build_jid
-                    jid = build_jid(telefone_cliente)
-
-                    msg_transferencia = "Ok, estou te transferindo para um de nossos atendentes. Por favor, aguarde um momento. 🧑‍💻"
-                    cliente.send_message(jid, message=msg_transferencia)
-
-                    # Atualizar mensagem no banco
-                    db_mensagem.resposta_texto = msg_transferencia
-                    db_mensagem.respondida = True
-                    db_mensagem.respondido_em = datetime.now()
-                    db_mensagem.processada = True
-                    db.commit()
-
-                return # Interrompe o fluxo aqui
-
         # Se auto-responder está ativo, processar com agente
         if sessao.auto_responder:
             try:
