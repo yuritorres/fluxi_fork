@@ -314,3 +314,17 @@ def pagina_comparar_agentes(request: Request, db: Session = Depends(get_db)):
         "agentes": agentes,
         "titulo": "Comparar Agentes"
     })
+
+
+@router.get("/playground", response_class=HTMLResponse)
+def pagina_playground(request: Request, db: Session = Depends(get_db)):
+    """Página do Playground de Agentes."""
+    sessoes = SessaoService.listar_todas(db, apenas_ativas=True)
+    agentes = AgenteService.listar_todos(db)  # Carregar todos para o seletor
+
+    return templates.TemplateResponse("agente/playground.html", {
+        "request": request,
+        "sessoes": sessoes,
+        "agentes": agentes,
+        "titulo": "Playground do Agente"
+    })

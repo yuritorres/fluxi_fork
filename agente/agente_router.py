@@ -9,7 +9,8 @@ from agente.agente_schema import (
     AgenteResposta,
     AgenteCriar,
     AgenteAtualizar,
-    AgenteFerramentasAtualizar
+    AgenteFerramentasAtualizar,
+    AgenteTesteRequest
 )
 from agente.agente_service import AgenteService
 
@@ -132,8 +133,7 @@ def vincular_treinamento_agente(
 @router.post("/{agente_id}/testar-prompt")
 async def testar_prompt_agente(
     agente_id: int,
-    mensagem_teste: str = Query(..., description="Mensagem de teste para o prompt"),
-    prompt_personalizado: Optional[str] = Query("", description="Prompt personalizado (opcional)"),
+    request: AgenteTesteRequest,
     db: Session = Depends(get_db)
 ):
     """Testa um prompt antes de aplicar ao agente."""
@@ -147,8 +147,8 @@ async def testar_prompt_agente(
             db=db,
             agente_id=agente_id,
             sessao_id=agente.sessao_id,
-            prompt_personalizado=prompt_personalizado,
-            mensagem_teste=mensagem_teste
+            prompt_personalizado=request.prompt_personalizado or "",
+            mensagem_teste=request.mensagem_teste
         )
 
         return {

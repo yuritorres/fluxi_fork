@@ -108,7 +108,7 @@ start_fluxi() {
     # Create directories if they don't exist
     mkdir -p uploads sessoes rags
     
-    docker-compose up -d
+    sudo docker compose up -d
     
     print_success "Fluxi started successfully!"
     print_info "Access Fluxi at: http://localhost:${PORT:-$DEFAULT_PORT}"
@@ -118,7 +118,7 @@ start_fluxi() {
 # Function to stop Fluxi
 stop_fluxi() {
     print_info "Stopping Fluxi..."
-    docker-compose down
+    sudo docker compose down
     print_success "Fluxi stopped"
 }
 
