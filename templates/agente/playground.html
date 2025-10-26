@@ -1,0 +1,196 @@
+{% extends "shared/base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page-Title -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-title-box">
+                <div class="row">
+                    <div class="col">
+                        <h4 class="page-title">Playground do Agente</h4>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item active">Playground</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Configuração do Teste</h4>
+                    <p class="text-muted mb-0">Selecione o agente e digite a mensagem para testar.</p>
+                </div>
+                <div class="card-body">
+                    <form id="form-playground">
+                        <div class="mb-3">
+                            <label for="select-sessao" class="form-label">Sessão</label>
+                            <select id="select-sessao" class="form-select">
+                                <option value="">Selecione uma sessão...</option>
+                                {% for sessao in sessoes %}
+                                <option value="{{ sessao.id }}">{{ sessao.nome }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="select-agente" class="form-label">Agente</label>
+                            <select id="select-agente" class="form-select" disabled>
+                                <option value="">Selecione um agente...</option>
+                                {% for agente in agentes %}
+                                <option value="{{ agente.id }}" data-sessao="{{ agente.sessao_id }}" style="display: none;">
+                                    #{{ agente.codigo }} - {{ agente.nome }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="mensagem-teste" class="form-label">Mensagem de Teste</label>
+                            <textarea id="mensagem-teste" class="form-control" rows="5" placeholder="Digite sua mensagem aqui..."></textarea>
+                        </div>
+
+                        <button type="submit" id="btn-testar" class="btn btn-primary" disabled>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display: none;"></span>
+                            Testar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-7">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Resultado</h4>
+                    <p class="text-muted mb-0">A resposta do agente aparecerá aqui.</p>
+                </div>
+                <div class="card-body">
+                    <div id="area-resultado" style="display: none;">
+                        <div class="alert alert-light" role="alert">
+                            <strong>Resposta do Agente:</strong>
+                            <pre id="resultado-texto" class="mt-2" style="white-space: pre-wrap; word-wrap: break-word;"></pre>
+                        </div>
+                        <hr>
+                        <h5>Métricas</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Modelo Utilizado
+                                <span id="resultado-modelo" class="badge bg-soft-info text-info"></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Tempo de Resposta
+                                <span id="resultado-tempo" class="badge bg-soft-primary text-primary"></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Tokens Usados
+                                <span id="resultado-tokens" class="badge bg-soft-success text-success"></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="area-erro" class="alert alert-danger" style="display: none;"></div>
+                    <div id="area-placeholder">
+                        <p class="text-center text-muted">Aguardando teste...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const selectSessao = document.getElementById('select-sessao');
+    const selectAgente = document.getElementById('select-agente');
+    const mensagemTeste = document.getElementById('mensagem-teste');
+    const btnTestar = document.getElementById('btn-testar');
+    const formPlayground = document.getElementById('form-playground');
+    const areaResultado = document.getElementById('area-resultado');
+    const areaErro = document.getElementById('area-erro');
+    const areaPlaceholder = document.getElementById('area-placeholder');
+    const spinner = btnTestar.querySelector('.spinner-border');
+
+    // Filtrar agentes quando a sessão muda
+    selectSessao.addEventListener('change', () => {
+        const sessaoId = selectSessao.value;
+        selectAgente.value = '';
+
+        // Habilitar/desabilitar seletor de agente
+        selectAgente.disabled = !sessaoId;
+
+        // Mostrar/esconder opções de agente
+        for (const option of selectAgente.options) {
+            if (option.value === "") continue;
+            option.style.display = (option.dataset.sessao === sessaoId) ? 'block' : 'none';
+        }
+
+        validarFormulario();
+    });
+
+    // Validar formulário
+    function validarFormulario() {
+        btnTestar.disabled = !(selectSessao.value && selectAgente.value && mensagemTeste.value.trim());
+    }
+    selectAgente.addEventListener('change', validarFormulario);
+    mensagemTeste.addEventListener('input', validarFormulario);
+
+    // Enviar formulário
+    formPlayground.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const agenteId = selectAgente.value;
+        const mensagem = mensagemTeste.value;
+
+        // UI de carregamento
+        btnTestar.disabled = true;
+        spinner.style.display = 'inline-block';
+        areaResultado.style.display = 'none';
+        areaErro.style.display = 'none';
+        areaPlaceholder.style.display = 'block';
+
+        try {
+            const response = await fetch(`/api/agentes/${agenteId}/testar-prompt`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    mensagem_teste: mensagem,
+                    prompt_personalizado: ""
+                })
+            });
+
+            const resultado = await response.json();
+
+            if (response.ok) {
+                document.getElementById('resultado-texto').textContent = resultado.resposta;
+                document.getElementById('resultado-modelo').textContent = resultado.modelo;
+                document.getElementById('resultado-tempo').textContent = `${resultado.tempo_ms} ms`;
+                document.getElementById('resultado-tokens').textContent = resultado.tokens;
+
+                areaResultado.style.display = 'block';
+                areaPlaceholder.style.display = 'none';
+            } else {
+                areaErro.textContent = resultado.detail || 'Ocorreu um erro desconhecido.';
+                areaErro.style.display = 'block';
+                areaPlaceholder.style.display = 'none';
+            }
+        } catch (error) {
+            areaErro.textContent = `Erro de conexão: ${error.message}`;
+            areaErro.style.display = 'block';
+            areaPlaceholder.style.display = 'none';
+        } finally {
+            // Restaurar UI
+            btnTestar.disabled = false;
+            spinner.style.display = 'none';
+            validarFormulario();
+        }
+    });
+});
+</script>
+{% endblock %}

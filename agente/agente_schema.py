@@ -109,3 +109,9 @@ class AgenteComparacaoResposta(BaseModel):
     agente_2: dict = Field(..., description="Dados do segundo agente")
     comparacao: dict = Field(..., description="Dados de comparação")
     recomendacao: str = Field(..., description="Recomendação baseada na análise")
+
+
+class AgenteTesteRequest(BaseModel):
+    """Schema para requisição de teste de agente no Playground."""
+    mensagem_teste: str = Field(..., description="Mensagem de teste para o prompt")
+    prompt_personalizado: Optional[str] = Field(None, description="Prompt personalizado (opcional)")
